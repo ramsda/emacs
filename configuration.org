@@ -1,0 +1,69 @@
+
+* Initialisation
+** Repos
+
+#+BEGIN_SRC emacs-lisp
+
+(require 'package)
+
+   (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
+                            ("gnu"       . "http://elpa.gnu.org/packages/")
+                            ("melpa"     . "http://melpa.milkbox.net/packages/")
+                            ("marmalade" . "http://marmalade-repo.org/packages/")))
+   (package-initialize)
+   (package-refresh-contents)
+
+#+END_SRC
+
+** Program Bindings
+
+#+BEGIN_SRC emacs-lisp
+
+  (global-set-key (kbd "<f5>") 'shell); complete
+  (global-set-key (kbd "<f6>") 'gnus); complete
+
+#+END_SRC
+
+** Remove Menubar, Scrollbar and Splash Screen
+
+#+BEGIN_SRC emacs-lisp
+
+(setq inhibit-startup-screen t)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+
+#+END_SRC
+
+* Evil Mode
+
+** Use on Startup
+
+#+BEGIN_SRC emacs-lisp
+
+(require 'evil)
+(evil-mode 1)
+
+#+END_SRC
+
+** Map 'jk' to ESC
+
+#+BEGIN_SRC emacs-lisp
+
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
+
+#+END_SRC
+
+* Org Mode
+
+** Language Execution
+   
+#+BEGIN_SRC emacs-lisp
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((R . t)))
+
+#+END_SRC
+  
+   
